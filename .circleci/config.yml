@@ -8,8 +8,8 @@ jobs:
       - checkout
       - run: npm i
       - save_cache:
-          keys:"npm_packages"
-          paths: /src/node_modules
+          key: "npm_packages"
+          paths: "/src/node_modules"
       - run: npm run lint
   test:
     docker:
@@ -17,7 +17,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys:"npm_packages"
+          key: "npm_packages"
       - run: npm i
       - run: npm run test
   analyze:
@@ -26,12 +26,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys:"npm_packages"
+          key: "npm_packages"
       - run: npm audit
       - run:
           name: "fix audit"
-          command:npm audit --fix
-          - when:on_fail
+          command: npm audit --fix
+          when: on_fail
 
 workflows:
   my_workflow:
