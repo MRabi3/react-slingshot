@@ -30,7 +30,7 @@ jobs:
       - run: npm audit
       - run:
           name: "fix audit"
-          command: npm audit --fix
+          command: npm audit fix --force
           when: on_fail
 
 workflows:
